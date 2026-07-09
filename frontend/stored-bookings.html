@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Bookings</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: url('booking.avif') no-repeat center/cover;
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      color: white;
+      font-size: 32px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      margin-bottom: 20px;
+    }
+
+    .back-btn {
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #ff9800, #ff5722);
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 95%;
+      max-width: 1100px;
+      border-collapse: collapse;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+    }
+
+    th {
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 14px;
+    }
+
+    td {
+      padding: 12px;
+      color: white;
+      font-weight: 500;
+      background: rgba(0,0,0,0.45);
+      text-align: center;
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 20px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .status {
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-weight: bold;
+      background: #ffc107;
+      color: #111;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>My Booking Details</h2>
+
+<a href="booking.html" class="back-btn">⬅ Back to Booking Page</a>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Pickup</th>
+      <th>Drop</th>
+      <th>Cab Type</th>
+      <th>Distance</th>
+      <th>Fare</th>
+      <th>Status</th>
+      <th>Booking Time</th>
+    </tr>
+  </thead>
+
+  <tbody id="bookingTable"></tbody>
+</table>
+
+<script src="js/api.js"></script>
+<script>
+  if (!getToken()) {
+    alert("Please login first.");
+    window.location.href = "login.html";
+  }
+
+  const table = document.getElementById("bookingTable");
+
+  async function loadBookings() {
+    try {
+      const response = await fetch(`${API_BASE_URL}/bookings/my`, {
+        method: "GET",
+        headers: getAuthHeaders()
+      });
+
+      const data = await response.json();
+
+      if (!data.success || data.bookings.length === 0) {
+        table.innerHTML = `
+          <tr>
+            <td class="no-data" colspan="8">No bookings found.</td>
+          </tr>`;
+        return;
+      }
+
+      table.innerHTML = "";
+
+      data.bookings.forEach((b) => {
+        table.innerHTML += `
+          <tr>
+            <td>${b.id}</td>
+            <td>${b.pickup_location}</td>
+            <td>${b.drop_location}</td>
+            <td>${b.cab_type}</td>
+            <td>${b.distance_km || "-"}</td>
+            <td>₹${b.estimated_fare || 0}</td>
+            <td><span class="status">${b.booking_status}</span></td>
+            <td>${new Date(b.booking_time).toLocaleString()}</td>
+          </tr>
+        `;
+      });
+
+    } catch (error) {
+      console.error(error);
+      table.innerHTML = `
+        <tr>
+          <td class="no-data" colspan="8">Unable to load bookings.</td>
+        </tr>`;
+    }
+  }
+
+  loadBookings();
+</script>
+
+</body>
+</html>
