@@ -9,6 +9,7 @@
   <style>
     body {
       margin: 0;
+<<<<<<< HEAD
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: url('s.png') no-repeat center center/cover;
       min-height: 100vh;
@@ -30,10 +31,30 @@
       height: 100%;
       background: rgba(0,0,0,0.4);
       z-index: 0;
+=======
+      font-family: "Poppins", sans-serif;
+      background: url('s.png') no-repeat center center/cover;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-section {
+      width: 380px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 18px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+      text-align: center;
+      color: white;
+>>>>>>> origin/main
     }
 
     header {
       position: absolute;
+<<<<<<< HEAD
       top: 35px;
       text-align: center;
       width: 100%;
@@ -94,11 +115,32 @@
       background: #ffcc00;
       color: #222;
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+=======
+      top: 15px;
+      text-align: center;
+      width: 100%;
+      color: white;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .button-link-home {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 10px 18px;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+>>>>>>> origin/main
     }
 
     label {
       display: block;
       text-align: left;
+<<<<<<< HEAD
       margin-top: 14px;
       font-weight: bold;
       color: #555;
@@ -161,10 +203,38 @@
       background: #f5f5f5;
       color: #333;
       border-color: #999;
+=======
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #ff9800, #ff6600);
+      color: white;
+      border: none;
+      font-size: 17px;
+      font-weight: bold;
+      border-radius: 6px;
+      margin-top: 18px;
+      cursor: pointer;
+>>>>>>> origin/main
     }
 
     #signupMessage {
       font-weight: bold;
+<<<<<<< HEAD
       margin-top: 15px;
       color: #cc0000;
     }
@@ -181,12 +251,26 @@
 
     a:hover {
       text-decoration: underline;
+=======
+      margin-top: 12px;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    a {
+      color: #fff;
+      font-weight: bold;
+>>>>>>> origin/main
     }
   </style>
 </head>
 
 <body>
 
+<<<<<<< HEAD
+=======
+<a href="index.html" class="button-link-home">Home</a>
+
+>>>>>>> origin/main
 <header>
   <h1>City Taxi</h1>
 </header>
@@ -194,6 +278,7 @@
 <section class="form-section">
   <h2>Sign Up</h2>
 
+<<<<<<< HEAD
   <div class="role-tabs">
   <button type="button" class="tab-btn active" onclick="setRole('customer', this)">Customer</button>
   <button type="button" class="tab-btn" onclick="setRole('driver', this)">Driver</button>
@@ -208,18 +293,39 @@
 
     <label>Email:</label>
     <input type="email" id="signupEmail" placeholder="Enter your email" required>
+=======
+  <form id="signupForm">
+    <label>Full Name:</label>
+    <input type="text" id="name" placeholder="Enter your name" required>
+
+    <label>Email:</label>
+    <input type="email" id="signupEmail" placeholder="Enter email" required>
+>>>>>>> origin/main
 
     <label>Phone:</label>
     <input type="text" id="phone" placeholder="Enter phone number" required>
 
     <label>Password:</label>
+<<<<<<< HEAD
     <input type="password" id="signupPassword" placeholder="Create a strong password" required>
 
     <button type="submit" class="submit-btn">Sign Up</button>
+=======
+    <input type="password" id="signupPassword" placeholder="Create password" required>
+
+    <label>Role:</label>
+    <select id="role" required>
+      <option value="user">User</option>
+      <option value="driver">Driver</option>
+    </select>
+
+    <button type="submit">Sign Up</button>
+>>>>>>> origin/main
   </form>
 
   <p id="signupMessage"></p>
 
+<<<<<<< HEAD
   <p style="margin-top: 20px;">
     Already have an account? <a href="login.html">Login</a>
   </p>
@@ -235,6 +341,13 @@
   }
 </script>
 
+=======
+  <p style="margin-top: 10px;">
+    Already have an account? <a href="login.html">Login</a>
+  </p>
+</section>
+
+>>>>>>> origin/main
 <script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 

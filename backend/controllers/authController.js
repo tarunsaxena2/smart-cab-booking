@@ -37,7 +37,11 @@ const registerUser = async (req, res) => {
       email,
       phone,
       hashedPassword,
+<<<<<<< HEAD
       role || "customer" // 1. FIXED: Changed from "user" to "customer"
+=======
+      role || "user"
+>>>>>>> origin/main
     );
 
     res.status(201).json({

@@ -19,11 +19,17 @@
       flex-direction:column;
       align-items:center;
       justify-content:flex-start;
+<<<<<<< HEAD
       background: url('l.png') no-repeat center center/cover;
       position:relative;
       color:#fff;
       /* Outer Image Theme Border */
       border: 10px solid #ffcc00; 
+=======
+      background:url('l.png') no-repeat center center/cover;
+      position:relative;
+      color:#fff;
+>>>>>>> origin/main
     }
 
     body::before{
@@ -33,18 +39,26 @@
       left:0;
       width:100%;
       height:100%;
+<<<<<<< HEAD
       background:rgba(0,0,0,.4);
+=======
+      background:rgba(0,0,0,.5);
+>>>>>>> origin/main
       z-index:0;
     }
 
     header{
       margin-top:40px;
       z-index:1;
+<<<<<<< HEAD
       text-align: center;
+=======
+>>>>>>> origin/main
     }
 
     header h1{
       font-size:3rem;
+<<<<<<< HEAD
       color: #ffcc00;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
     }
@@ -61,11 +75,45 @@
       z-index:1;
       color: #333;
       margin-bottom: 40px;
+=======
+    }
+
+    .button-link,
+    button.button-link{
+      display:inline-block;
+      padding:12px 25px;
+      background:#28a745;
+      color:#fff;
+      text-decoration:none;
+      border:none;
+      border-radius:50px;
+      cursor:pointer;
+      font-size:16px;
+      font-weight:bold;
+      transition:.3s;
+    }
+
+    .button-link:hover,
+    button.button-link:hover{
+      background:#218838;
+    }
+
+    .form-section{
+      margin-top:40px;
+      width:400px;
+      max-width:90%;
+      background:rgba(255,255,255,.15);
+      backdrop-filter:blur(10px);
+      padding:35px;
+      border-radius:15px;
+      z-index:1;
+>>>>>>> origin/main
     }
 
     .form-section h2{
       margin-bottom:20px;
       text-align:center;
+<<<<<<< HEAD
       color: #333;
     }
 
@@ -107,10 +155,18 @@
       font-weight: bold;
       color: #555;
       text-align: left;
+=======
+    }
+
+    label{
+      display:block;
+      margin-bottom:5px;
+>>>>>>> origin/main
     }
 
     input{
       width:100%;
+<<<<<<< HEAD
       padding:12px 15px;
       margin-bottom:20px;
       border: 2px solid #e8e8e8;
@@ -173,6 +229,23 @@
       background: #f5f5f5;
       color: #333;
       border-color: #999;
+=======
+      padding:12px;
+      margin-bottom:20px;
+      border:none;
+      border-radius:10px;
+      outline:none;
+      background:rgba(255,255,255,.2);
+      color:white;
+    }
+
+    input::placeholder{
+      color:#ddd;
+    }
+
+    .inline-buttons{
+      text-align:center;
+>>>>>>> origin/main
     }
 
     #loginMessage{
@@ -182,6 +255,7 @@
     }
 
     p{
+<<<<<<< HEAD
       margin-top:20px;
       text-align:center;
       color: #666;
@@ -196,6 +270,16 @@
     p a:hover {
       text-decoration: underline;
     }
+=======
+      margin-top:15px;
+      text-align:center;
+    }
+
+    p a{
+      color:gold;
+      text-decoration:none;
+    }
+>>>>>>> origin/main
   </style>
 </head>
 
@@ -205,6 +289,7 @@
   <h1>City Taxi</h1>
 </header>
 
+<<<<<<< HEAD
 <section class="form-section">
 
   <h2>Login</h2>
@@ -245,6 +330,57 @@
   }
 </script>
 
+=======
+<br>
+
+<a href="index.html" class="button-link">Home</a>
+
+<section class="form-section">
+
+<h2>Login</h2>
+
+<form id="loginForm">
+
+<label>Email</label>
+
+<input
+type="email"
+id="email"
+placeholder="Enter Email"
+required
+>
+
+<label>Password</label>
+
+<input
+type="password"
+id="password"
+placeholder="Enter Password"
+required
+>
+
+<div class="inline-buttons">
+
+<button
+type="submit"
+class="button-link">
+Login
+</button>
+
+</div>
+
+</form>
+
+<p id="loginMessage"></p>
+
+<p>
+Don't have an account?
+<a href="signup.html">Sign Up</a>
+</p>
+
+</section>
+
+>>>>>>> origin/main
 <script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 

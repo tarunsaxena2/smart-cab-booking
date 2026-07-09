@@ -19,7 +19,11 @@ const router = express.Router();
 router.post(
   "/",
   authMiddleware,
+<<<<<<< HEAD
   roleMiddleware("customer"), // 1. FIXED: Changed from "user" to "customer" to match your DB schema
+=======
+  roleMiddleware("user"),
+>>>>>>> origin/main
   [
     body("pickupLocation").notEmpty().withMessage("Pickup location is required"),
     body("dropLocation").notEmpty().withMessage("Drop location is required"),
@@ -34,7 +38,11 @@ router.post(
 router.get(
   "/my",
   authMiddleware,
+<<<<<<< HEAD
   roleMiddleware("customer"), // 2. FIXED: Changed from "user" to "customer"
+=======
+  roleMiddleware("user"),
+>>>>>>> origin/main
   getMyBookings
 );
 
@@ -45,26 +53,38 @@ router.put(
   roleMiddleware("driver", "admin"),
   changeBookingStatus
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 router.get(
   "/requests",
   authMiddleware,
   roleMiddleware("driver"),
   getRideRequests
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 router.put(
   "/:bookingId/accept",
   authMiddleware,
   roleMiddleware("driver"),
   acceptRide
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 router.put(
   "/:bookingId/complete",
   authMiddleware,
   roleMiddleware("driver"),
   finishRide
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 module.exports = router;
