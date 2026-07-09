@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - City Taxi</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      background: url('l.png') no-repeat center center/cover;
+      position:relative;
+      color:#fff;
+      /* Outer Image Theme Border */
+      border: 10px solid #ffcc00; 
+    }
+
+    body::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,.4);
+      z-index:0;
+    }
+
+    header{
+      margin-top:40px;
+      z-index:1;
+      text-align: center;
+    }
+
+    header h1{
+      font-size:3rem;
+      color: #ffcc00;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+
+    .form-section{
+      margin-top:30px;
+      width:400px;
+      max-width:90%;
+      background:#ffffff;
+      padding:35px;
+      border-radius:16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border: 3px solid #ffcc00; 
+      z-index:1;
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    .form-section h2{
+      margin-bottom:20px;
+      text-align:center;
+      color: #333;
+    }
+
+    .role-tabs {
+      display: flex;
+      background: #f2f2f2;
+      border-radius: 10px;
+      padding: 4px;
+      margin-bottom: 25px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 11px;
+      background: transparent;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .tab-btn:hover {
+      color: #222;
+    }
+
+    .tab-btn.active {
+      background: #ffcc00;
+      color: #222;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    label {
+      display:block;
+      margin-bottom:6px;
+      font-weight: bold;
+      color: #555;
+      text-align: left;
+    }
+
+    input{
+      width:100%;
+      padding:12px 15px;
+      margin-bottom:20px;
+      border: 2px solid #e8e8e8;
+      border-radius:10px;
+      outline:none;
+      background:#fafafa;
+      color:#333;
+      font-size: 15px;
+      transition: 0.2s;
+    }
+
+    input:focus {
+      border-color: #ffcc00;
+      background: #fff;
+    }
+
+    input::placeholder{
+      color:#aaa;
+    }
+
+    .button-link,
+    button.button-link {
+      display:inline-block;
+      width: 100%;
+      padding: 12px;
+      background:#ffcc00; 
+      color:#222;
+      text-decoration:none;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      font-size:16px;
+      font-weight:bold;
+      transition:.3s;
+      box-shadow: 0 4px 10px rgba(255, 204, 0, 0.2);
+    }
+
+    .button-link:hover,
+    button.button-link:hover{
+      background:#e6b800;
+    }
+
+    .button-home-bottom {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background: transparent;
+      color: #666;
+      text-decoration: none;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 15px;
+      transition: 0.2s;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .button-home-bottom:hover {
+      background: #f5f5f5;
+      color: #333;
+      border-color: #999;
+    }
+
+    #loginMessage{
+      margin-top:15px;
+      text-align:center;
+      font-weight:bold;
+    }
+
+    p{
+      margin-top:20px;
+      text-align:center;
+      color: #666;
+    }
+
+    p a {
+      color:#e6a100;
+      font-weight: bold;
+      text-decoration:none;
+    }
+    
+    p a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>City Taxi</h1>
+</header>
+
+<section class="form-section">
+
+  <h2>Login</h2>
+
+  <div class="role-tabs">
+  <button type="button" class="tab-btn active" onclick="setRole('customer', this)">Customer</button>
+  <button type="button" class="tab-btn" onclick="setRole('driver', this)">Driver</button>
+  <button type="button" class="tab-btn" onclick="setRole('admin', this)">Admin</button>
+</div>
+
+  <form id="loginForm">
+    <input type="hidden" id="loginRole" value="customer">
+
+    <label>Email</label>
+    <input type="email" id="email" placeholder="Enter your email" required>
+
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Enter your password" required>
+
+    <button type="submit" class="button-link">Login</button>
+  </form>
+
+  <p id="loginMessage"></p>
+
+  <p>
+    Don't have an account? <a href="signup.html">Sign Up</a>
+  </p>
+
+  <a href="index.html" class="button-home-bottom">Back to Home</a>
+
+</section>
+
+<script>
+  function setRole(roleName, element) {
+    document.getElementById('loginRole').value = roleName;
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    element.classList.add('active');
+  }
+</script>
+
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+
+</body>
+</html>

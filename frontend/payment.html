@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment - City Taxi</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: url('p.webp') no-repeat center center/cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-box {
+  width: 400px;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+}
+
+h1, h2, label {
+  color: #fff;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  text-align: left;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #28a745, #1b8f39);
+  color: white;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 18px;
+  cursor: pointer;
+}
+
+#paymentMessage {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.home-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #28a745;
+  color: #fff;
+  padding: 10px 18px;
+  text-decoration: none;
+  border-radius: 6px;
+}
+</style>
+</head>
+
+<body>
+
+<a href="booking.html" class="home-btn">Back</a>
+
+<div class="payment-box">
+<h1>City Taxi</h1>
+<h2>Payment</h2>
+
+<form id="paymentForm">
+
+<label>Booking ID</label>
+<input type="number" id="bookingId" placeholder="Enter booking ID" required>
+
+<label>Amount</label>
+<input type="number" id="amount" placeholder="Enter amount" required>
+
+<label>Payment Method</label>
+<select id="paymentMethod" required>
+  <option value="">-- Choose --</option>
+  <option value="UPI">UPI</option>
+  <option value="Card">Card</option>
+  <option value="Net Banking">Net Banking</option>
+  <option value="Cash">Cash</option>
+</select>
+
+<label>Transaction ID</label>
+<input type="text" id="transactionId" placeholder="Enter transaction ID" required>
+
+<button type="submit">Confirm Payment</button>
+</form>
+
+<p id="paymentMessage"></p>
+
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/payment.js"></script>
+
+</body>
+</html>

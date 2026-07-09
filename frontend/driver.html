@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Driver Dashboard - City Taxi</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif;}
+
+body{
+min-height:100vh;
+background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url('drivers.webp') no-repeat center/cover;
+padding:20px;
+color:#333;
+}
+
+header{
+background:rgba(0,0,0,.7);
+padding:20px;
+border-radius:10px;
+color:#fff;
+text-align:center;
+margin-bottom:25px;
+}
+
+nav{
+margin-top:15px;
+}
+
+nav a{
+color:#fff;
+text-decoration:none;
+padding:8px 15px;
+background:#4CAF50;
+border-radius:5px;
+margin:5px;
+display:inline-block;
+}
+
+.container{
+background:#fff;
+padding:20px;
+border-radius:15px;
+margin-bottom:20px;
+overflow-x:auto;
+}
+
+h2{
+text-align:center;
+color:#4CAF50;
+margin-bottom:15px;
+}
+
+.dashboard-card{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-bottom:20px;
+}
+
+.card{
+background:#f4f4f4;
+padding:15px;
+border-radius:10px;
+text-align:center;
+box-shadow:0 3px 8px rgba(0,0,0,.15);
+}
+
+.card h3{
+color:#333;
+margin-bottom:8px;
+}
+
+.card p{
+font-size:18px;
+font-weight:bold;
+color:#4CAF50;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:10px;
+text-align:center;
+font-size:14px;
+}
+
+th{
+background:#4CAF50;
+color:white;
+}
+
+button{
+padding:7px 12px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+color:white;
+font-weight:bold;
+margin:3px;
+}
+
+.accept-btn{background:#2196F3;}
+.start-btn{background:#ff9800;}
+.complete-btn{background:#4CAF50;}
+.logout-btn{background:#e53935;}
+
+#message{
+text-align:center;
+font-weight:bold;
+margin:15px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>City Taxi - Driver Dashboard</h1>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="#" onclick="logout()">Logout</a>
+</nav>
+</header>
+
+<div class="container">
+<h2>Driver Profile</h2>
+
+<div class="dashboard-card">
+<div class="card">
+<h3>Driver ID</h3>
+<p id="driverId">-</p>
+</div>
+
+<div class="card">
+<h3>Availability</h3>
+<p id="availability">-</p>
+</div>
+
+<div class="card">
+<h3>Rating</h3>
+<p id="rating">-</p>
+</div>
+
+<div class="card">
+<h3>Experience</h3>
+<p id="experience">-</p>
+</div>
+
+<div class="card">
+<h3>License</h3>
+<p id="licenseNumber">-</p>
+</div>
+</div>
+</div>
+
+<div class="container">
+<h2>Pending Ride Requests</h2>
+
+<p id="message"></p>
+
+<table>
+<thead>
+<tr>
+<th>Booking ID</th>
+<th>Pickup</th>
+<th>Drop</th>
+<th>Cab Type</th>
+<th>Distance</th>
+<th>Fare</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+<tbody id="requestsTable"></tbody>
+</table>
+</div>
+<button onclick="updateLocation()" class="btn">
+    📍 Update My Location
+</button>
+
+<p id="locationMessage"></p>
+
+<script src="js/api.js"></script>
+
+<script>
+if (!getToken()) {
+  alert("Please login first.");
+  window.location.href = "login.html";
+}
+
+const user = getUser();
+
+if (!user || user.role !== "driver") {
+  alert("Only driver can access this page.");
+  window.location.href = "login.html";
+}
+
+const message = document.getElementById("message");
+const requestsTable = document.getElementById("requestsTable");
+
+async function loadDriverDashboard() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/drivers/dashboard`, {
+      headers: getAuthHeaders()
+    });
+
+    const data = await response.json();
+
+    if (!data.success) {
+      message.style.color = "red";
+      message.innerText = data.message || "Unable to load driver profile";
+      return;
+    }
+
+    document.getElementById("driverId").innerText = data.dashboard.driverId;
+    document.getElementById("availability").innerText = data.dashboard.availability ? "Online" : "Offline";
+    document.getElementById("rating").innerText = data.dashboard.rating;
+    document.getElementById("experience").innerText = data.dashboard.experience + " years";
+    document.getElementById("licenseNumber").innerText = data.dashboard.licenseNumber;
+
+  } catch (error) {
+    console.error(error);
+    message.style.color = "red";
+    message.innerText = "Server connection failed.";
+  }
+}
+
+async function loadRideRequests() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/bookings/requests`, {
+      headers: getAuthHeaders()
+    });
+
+    const data = await response.json();
+
+    requestsTable.innerHTML = "";
+
+    if (!data.success || data.rideRequests.length === 0) {
+      requestsTable.innerHTML = `
+        <tr>
+          <td colspan="8">No pending ride requests.</td>
+        </tr>
+      `;
+      return;
+    }
+
+    data.rideRequests.forEach((b) => {
+      requestsTable.innerHTML += `
+        <tr>
+          <td>${b.id}</td>
+          <td>${b.pickup_location}</td>
+          <td>${b.drop_location}</td>
+          <td>${b.cab_type}</td>
+          <td>${b.distance_km || "-"}</td>
+          <td>₹${b.estimated_fare || 0}</td>
+          <td>${b.booking_status}</td>
+          <td>
+            <button class="accept-btn" onclick="acceptRide(${b.id})">Accept</button>
+          </td>
+        </tr>
+      `;
+    });
+
+  } catch (error) {
+    console.error(error);
+    requestsTable.innerHTML = `
+      <tr>
+        <td colspan="8">Unable to load ride requests.</td>
+      </tr>
+    `;
+  }
+}
+
+async function acceptRide(bookingId) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/bookings/${bookingId}/accept`, {
+      method: "PUT",
+      headers: getAuthHeaders()
+    });
+
+    const data = await response.json();
+
+    if (!data.success) {
+      alert(data.message || "Unable to accept ride");
+      return;
+    }
+
+    alert("Ride accepted successfully");
+    loadRideRequests();
+
+  } catch (error) {
+    console.error(error);
+    alert("Server error");
+  }
+}
+
+loadDriverDashboard();
+loadRideRequests();
+async function updateLocation() {
+
+    if (!navigator.geolocation) {
+        alert("Geolocation is not supported by your browser.");
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(async (position) => {
+
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        try {
+
+            const response = await fetch(`${API_BASE_URL}/drivers/location`, {
+
+                method: "PUT",
+
+                headers: getAuthHeaders(),
+
+                body: JSON.stringify({
+                    latitude,
+                    longitude
+                })
+
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+
+                document.getElementById("locationMessage").innerHTML =
+                    "✅ Location Updated";
+
+            } else {
+
+                document.getElementById("locationMessage").innerHTML =
+                    data.message;
+
+            }
+
+        } catch (err) {
+
+            console.log(err);
+
+            document.getElementById("locationMessage").innerHTML =
+                "Unable to update location.";
+
+        }
+
+    });
+
+}
+</script>
+
+</body>
+</html>
