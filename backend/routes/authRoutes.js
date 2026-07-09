@@ -5,6 +5,7 @@ const {
   loginUser,
   getProfile,
 } = require("../controllers/authController");
+
 const authMiddleware = require("../middleware/authMiddleware");
 const roleMiddleware = require("../middleware/roleMiddleware");
 
@@ -21,12 +22,7 @@ router.post(
       .withMessage("Password must be at least 6 characters"),
     body("role")
       .optional()
-<<<<<<< HEAD
-      // FIXED: Swapped "user" out for "customer" to match frontend tabs and database schemas
-      .isIn(["customer", "driver", "admin"]) 
-=======
       .isIn(["user", "driver", "admin"])
->>>>>>> origin/main
       .withMessage("Invalid role"),
   ],
   registerUser
@@ -42,6 +38,7 @@ router.post(
 );
 
 router.get("/profile", authMiddleware, getProfile);
+
 router.get(
   "/admin-test",
   authMiddleware,

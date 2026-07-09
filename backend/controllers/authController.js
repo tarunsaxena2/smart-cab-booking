@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken");
 // Register User
 const registerUser = async (req, res) => {
   try {
-    // Validation Errors
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -18,7 +17,6 @@ const registerUser = async (req, res) => {
 
     const { name, email, phone, password, role } = req.body;
 
-    // Check Existing User
     const existingUser = await findUserByEmail(email);
 
     if (existingUser) {
@@ -28,20 +26,14 @@ const registerUser = async (req, res) => {
       });
     }
 
-    // Hash Password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create User
     const user = await createUser(
       name,
       email,
       phone,
       hashedPassword,
-<<<<<<< HEAD
-      role || "customer" // 1. FIXED: Changed from "user" to "customer"
-=======
       role || "user"
->>>>>>> origin/main
     );
 
     res.status(201).json({
@@ -49,7 +41,6 @@ const registerUser = async (req, res) => {
       message: "User registered successfully",
       user,
     });
-
   } catch (error) {
     console.error(error);
 
@@ -116,7 +107,6 @@ const loginUser = async (req, res) => {
         role: user.role,
       },
     });
-
   } catch (error) {
     console.error(error);
 
@@ -141,7 +131,6 @@ const getProfile = async (req, res) => {
         role: user.role,
       },
     });
-
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -149,6 +138,7 @@ const getProfile = async (req, res) => {
     });
   }
 };
+
 module.exports = {
   registerUser,
   loginUser,

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="css/style.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign Up - City Taxi</title>
 
   <style>
     body {
       margin: 0;
-<<<<<<< HEAD
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: url('s.png') no-repeat center center/cover;
       min-height: 100vh;
@@ -18,43 +17,19 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      /* Outer Image Theme Border */
-      border: 10px solid #ffcc00; 
+      border: 10px solid #ffcc00;
     }
 
     body::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       background: rgba(0,0,0,0.4);
       z-index: 0;
-=======
-      font-family: "Poppins", sans-serif;
-      background: url('s.png') no-repeat center center/cover;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .form-section {
-      width: 380px;
-      padding: 30px;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 18px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 28px rgba(0,0,0,0.4);
-      text-align: center;
-      color: white;
->>>>>>> origin/main
     }
 
     header {
       position: absolute;
-<<<<<<< HEAD
       top: 35px;
       text-align: center;
       width: 100%;
@@ -72,7 +47,7 @@
       background: #ffffff;
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      border: 3px solid #ffcc00; 
+      border: 3px solid #ffcc00;
       text-align: center;
       color: #333;
       margin-top: 85px;
@@ -104,43 +79,17 @@
       font-weight: bold;
       font-size: 14px;
       border-radius: 8px;
-      transition: 0.3s;
-    }
-
-    .tab-btn:hover {
-      color: #222;
     }
 
     .tab-btn.active {
       background: #ffcc00;
       color: #222;
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-=======
-      top: 15px;
-      text-align: center;
-      width: 100%;
-      color: white;
-      font-size: 26px;
-      font-weight: bold;
-    }
-
-    .button-link-home {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      padding: 10px 18px;
-      background: #007bff;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: 600;
->>>>>>> origin/main
     }
 
     label {
       display: block;
       text-align: left;
-<<<<<<< HEAD
       margin-top: 14px;
       font-weight: bold;
       color: #555;
@@ -156,7 +105,6 @@
       font-size: 15px;
       background: #fafafa;
       color: #333;
-      transition: 0.2s;
     }
 
     input:focus {
@@ -164,7 +112,7 @@
       background: #fff;
     }
 
-    button.submit-btn {
+    .submit-btn {
       width: 100%;
       padding: 13px;
       background: linear-gradient(135deg, #ffcc00, #ffa600);
@@ -175,12 +123,6 @@
       border-radius: 10px;
       margin-top: 25px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(255, 166, 0, 0.2);
-      transition: 0.2s;
-    }
-
-    button.submit-btn:hover {
-      opacity: 0.95;
     }
 
     .button-home-bottom {
@@ -194,47 +136,12 @@
       border-radius: 10px;
       font-weight: bold;
       font-size: 15px;
-      transition: 0.2s;
       margin-top: 20px;
       text-align: center;
     }
 
-    .button-home-bottom:hover {
-      background: #f5f5f5;
-      color: #333;
-      border-color: #999;
-=======
-      margin-top: 12px;
-      font-weight: bold;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 12px;
-      margin-top: 6px;
-      border-radius: 6px;
-      border: none;
-      outline: none;
-      font-size: 15px;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background: linear-gradient(135deg, #ff9800, #ff6600);
-      color: white;
-      border: none;
-      font-size: 17px;
-      font-weight: bold;
-      border-radius: 6px;
-      margin-top: 18px;
-      cursor: pointer;
->>>>>>> origin/main
-    }
-
     #signupMessage {
       font-weight: bold;
-<<<<<<< HEAD
       margin-top: 15px;
       color: #cc0000;
     }
@@ -248,108 +155,63 @@
       font-weight: bold;
       text-decoration: none;
     }
-
-    a:hover {
-      text-decoration: underline;
-=======
-      margin-top: 12px;
-      text-shadow: 1px 1px 3px black;
-    }
-
-    a {
-      color: #fff;
-      font-weight: bold;
->>>>>>> origin/main
-    }
   </style>
 </head>
 
 <body>
+  <header>
+    <h1>City Taxi</h1>
+  </header>
 
-<<<<<<< HEAD
-=======
-<a href="index.html" class="button-link-home">Home</a>
+  <section class="form-section">
+    <h2>Sign Up</h2>
 
->>>>>>> origin/main
-<header>
-  <h1>City Taxi</h1>
-</header>
+    <div class="role-tabs">
+      <button type="button" class="tab-btn active" onclick="setRole('user', this)">Customer</button>
+      <button type="button" class="tab-btn" onclick="setRole('driver', this)">Driver</button>
+      <button type="button" class="tab-btn" onclick="setRole('admin', this)">Admin</button>
+    </div>
 
-<section class="form-section">
-  <h2>Sign Up</h2>
+    <form id="signupForm">
+      <input type="hidden" id="signupRole" value="user" />
 
-<<<<<<< HEAD
-  <div class="role-tabs">
-  <button type="button" class="tab-btn active" onclick="setRole('customer', this)">Customer</button>
-  <button type="button" class="tab-btn" onclick="setRole('driver', this)">Driver</button>
-  <button type="button" class="tab-btn" onclick="setRole('admin', this)">Admin</button>
-</div>
+      <label>Full Name:</label>
+      <input type="text" id="name" placeholder="Enter your full name" required />
 
-  <form id="signupForm">
-    <input type="hidden" id="signupRole" value="customer">
+      <label>Email:</label>
+      <input type="email" id="signupEmail" placeholder="Enter your email" required />
 
-    <label>Full Name:</label>
-    <input type="text" id="name" placeholder="Enter your full name" required>
+      <label>Phone:</label>
+      <input type="text" id="phone" placeholder="Enter phone number" required />
 
-    <label>Email:</label>
-    <input type="email" id="signupEmail" placeholder="Enter your email" required>
-=======
-  <form id="signupForm">
-    <label>Full Name:</label>
-    <input type="text" id="name" placeholder="Enter your name" required>
+      <label>Password:</label>
+      <input type="password" id="signupPassword" placeholder="Create a strong password" required />
 
-    <label>Email:</label>
-    <input type="email" id="signupEmail" placeholder="Enter email" required>
->>>>>>> origin/main
+      <button type="submit" class="submit-btn">Sign Up</button>
+    </form>
 
-    <label>Phone:</label>
-    <input type="text" id="phone" placeholder="Enter phone number" required>
+    <p id="signupMessage"></p>
 
-    <label>Password:</label>
-<<<<<<< HEAD
-    <input type="password" id="signupPassword" placeholder="Create a strong password" required>
+    <p style="margin-top: 20px;">
+      Already have an account? <a href="login.html">Login</a>
+    </p>
 
-    <button type="submit" class="submit-btn">Sign Up</button>
-=======
-    <input type="password" id="signupPassword" placeholder="Create password" required>
+    <a href="index.html" class="button-home-bottom">Back to Home</a>
+  </section>
 
-    <label>Role:</label>
-    <select id="role" required>
-      <option value="user">User</option>
-      <option value="driver">Driver</option>
-    </select>
+  <script>
+    function setRole(roleName, element) {
+      document.getElementById("signupRole").value = roleName;
 
-    <button type="submit">Sign Up</button>
->>>>>>> origin/main
-  </form>
+      document.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.classList.remove("active");
+      });
 
-  <p id="signupMessage"></p>
+      element.classList.add("active");
+    }
+  </script>
 
-<<<<<<< HEAD
-  <p style="margin-top: 20px;">
-    Already have an account? <a href="login.html">Login</a>
-  </p>
-
-  <a href="index.html" class="button-home-bottom">Back to Home</a>
-</section>
-
-<script>
-  function setRole(roleName, element) {
-    document.getElementById('signupRole').value = roleName;
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    element.classList.add('active');
-  }
-</script>
-
-=======
-  <p style="margin-top: 10px;">
-    Already have an account? <a href="login.html">Login</a>
-  </p>
-</section>
-
->>>>>>> origin/main
-<script src="js/api.js"></script>
-<script src="js/auth.js"></script>
-
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
 </body>
 </html>
